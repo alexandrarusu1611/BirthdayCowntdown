@@ -3,11 +3,12 @@
     grid-row:2/3;
     padding-bottom: 50px;
     justify-self: center;
+    align-self: end;
 
     input {
         border:none;
         background-color: transparent;
-        border-bottom: 2px solid $color-yellow-one;
+        border-bottom: 2px solid #E3B924;
         text-align: center;
         font-size: 80px;
         font-family: 'Roboto';
