@@ -5,7 +5,10 @@
     height:50px;
     width: 300px;
     background-color: $color-blue-two;
+    
+    -webkit-clip-path: polygon(7% 0, 100% 0, 93% 100%, 0% 100%);
     clip-path: polygon(7% 0, 100% 0, 93% 100%, 0% 100%);
+    
     color:white;
     font-family: 'Montserrat';
     font-size: 18px;
