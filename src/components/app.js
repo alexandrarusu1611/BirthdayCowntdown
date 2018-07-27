@@ -11,7 +11,7 @@ export default class App extends Component {
   constructor(props) {
     super(props)
 
-    var timer = 0;
+    this.timer = 0;
 
     this.state = {
       active: false,
@@ -26,7 +26,7 @@ export default class App extends Component {
     this.handleGenerate = this.handleGenerate.bind(this)
   }
 
-  handleChange =function(date) {
+  handleChange = function(date) {
     console.log('APP JS', date._d);
   this.setState({
     startDate: date
@@ -34,39 +34,37 @@ export default class App extends Component {
 }.bind(this)
 
 handleGenerate = function() {
-  this.setState({ active:true })
+  this.setState({ active: true })
 
   var countDownDate = this.state.startDate.toDate().getTime();
-  timer = setInterval(function() {
-    var now = new Date().getTime;
+  this.timer = setInterval(function() {
+    var now = new Date().getTime();
     var distance = countDownDate - now;
 
-    var days = Math.floor(distance / (1000*60*60*24));
-    var hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-    var minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-    var seconds = Math.floor((distance % (1000*60)) / 1000);
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     const time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-    const timeRemaining= {
+    const timeRemaining = {
       days,
       hours,
       minutes,
       seconds
     }
-    this.setState({ active:true })
-
-    console.log(this.state.timeRemaining);
+    this.setState({ timeRemaining });
 
     if (distance < 0) {
-      clearInterval(timer);
+      clearInterval(this.timer);
     }
-  }, 1000);
+  }.bind(this), 1000);
 }.bind(this)
 
   renderItems = function() {
     if(this.state.active) {
       return[
-        <Clock />,
+        <Clock timeRemaining={this.state.timeRemaining}/>,
         ChangeDate('Change Date', () => this.setState({active: false})),
         LargeText('04/03'),
         <label className="grid__remaining">Remaining until your 100th birthday</label>
